@@ -1,14 +1,16 @@
 # coding: utf-8
-import sys, os
-sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
-import numpy as np
-import pickle
-from dataset.mnist import load_mnist
 from common.functions import sigmoid, softmax
+from dataset.mnist import load_mnist
+import pickle
+import numpy as np
+import sys
+import os
+sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
 
 
 def get_data():
-    (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, flatten=True, one_hot_label=False)
+    (x_train, t_train), (x_test, t_test) = load_mnist(
+        normalize=True, flatten=True, one_hot_label=False)
     return x_test, t_test
 
 
@@ -35,7 +37,7 @@ def predict(network, x):
 x, t = get_data()
 network = init_network()
 
-batch_size = 100 # バッチの数
+batch_size = 100  # バッチの数
 accuracy_cnt = 0
 
 for i in range(0, len(x), batch_size):
